@@ -5,29 +5,29 @@ namespace app\utils;
 
 final class Request
 {
-  public static function getMethod(): string
+  public static function getMethod()
   {
     return strtolower($_SERVER['REQUEST_METHOD']);
   }
 
-  public static function getUrl(): string
+  public static function getUrl()
   {
     return urldecode(
       parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
     );
   }
 
-  public static function isGet(): bool
+  public static function isGet()
   {
     return self::getMethod() === 'get';
   }
 
-  public static function isPost(): bool
+  public static function isPost()
   {
     return self::getMethod() === 'post';
   }
 
-  public static function getBody(): array
+  public static function getBody()
   {
     $data = [];
 
@@ -42,7 +42,8 @@ final class Request
         $data[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
       }
     }
-    return $data;
+
+    return (object) $data;
   }
 
   // getJson

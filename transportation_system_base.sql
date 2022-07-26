@@ -3,19 +3,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema unet_transporte
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema unet_transporte
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `unet_transporte` DEFAULT CHARACTER SET utf8 ;
+USE `unet_transporte` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`business`
+-- Table `unet_transporte`.`business`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`business` (
+CREATE TABLE IF NOT EXISTS `unet_transporte`.`business` (
   `id` INT NOT NULL,
   `name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
@@ -23,9 +23,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`places`
+-- Table `unet_transporte`.`places`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`places` (
+CREATE TABLE IF NOT EXISTS `unet_transporte`.`places` (
   `id` INT NOT NULL,
   `street` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NULL,
@@ -34,9 +34,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`routes`
+-- Table `unet_transporte`.`routes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`routes` (
+CREATE TABLE IF NOT EXISTS `unet_transporte`.`routes` (
   `id` INT NOT NULL,
   `name` VARCHAR(45) NULL,
   `price` DECIMAL NOT NULL,
@@ -49,26 +49,26 @@ CREATE TABLE IF NOT EXISTS `mydb`.`routes` (
   INDEX `fk_routes_places2_idx` (`finish` ASC),
   CONSTRAINT `fk_routes_business`
     FOREIGN KEY (`business_id`)
-    REFERENCES `mydb`.`business` (`id`)
+    REFERENCES `unet_transporte`.`business` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_routes_places1`
     FOREIGN KEY (`start`)
-    REFERENCES `mydb`.`places` (`id`)
+    REFERENCES `unet_transporte`.`places` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_routes_places2`
     FOREIGN KEY (`finish`)
-    REFERENCES `mydb`.`places` (`id`)
+    REFERENCES `unet_transporte`.`places` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`user_suggest`
+-- Table `unet_transporte`.`user_suggest`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`user_suggest` (
+CREATE TABLE IF NOT EXISTS `unet_transporte`.`user_suggest` (
   `id` INT NOT NULL,
   `comment` VARCHAR(300) NOT NULL,
   `first_name` VARCHAR(45) NOT NULL,
@@ -80,16 +80,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`user_suggest` (
   INDEX `fk_user_suggest_business1_idx` (`business_id` ASC),
   CONSTRAINT `fk_user_suggest_business1`
     FOREIGN KEY (`business_id`)
-    REFERENCES `mydb`.`business` (`id`)
+    REFERENCES `unet_transporte`.`business` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`places_on_the_route`
+-- Table `unet_transporte`.`places_on_the_route`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`places_on_the_route` (
+CREATE TABLE IF NOT EXISTS `unet_transporte`.`places_on_the_route` (
   `id` VARCHAR(45) NOT NULL,
   `places_id` INT NOT NULL,
   `routes_id` INT NOT NULL,
@@ -98,21 +98,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`places_on_the_route` (
   INDEX `fk_places_has_routes_places1_idx` (`places_id` ASC),
   CONSTRAINT `fk_places_has_routes_places1`
     FOREIGN KEY (`places_id`)
-    REFERENCES `mydb`.`places` (`id`)
+    REFERENCES `unet_transporte`.`places` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_places_has_routes_routes1`
     FOREIGN KEY (`routes_id`)
-    REFERENCES `mydb`.`routes` (`id`)
+    REFERENCES `unet_transporte`.`routes` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`users`
+-- Table `unet_transporte`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`users` (
+CREATE TABLE IF NOT EXISTS `unet_transporte`.`users` (
   `id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,

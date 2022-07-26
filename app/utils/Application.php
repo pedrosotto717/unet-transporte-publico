@@ -2,6 +2,7 @@
 
 namespace app\utils;
 
+require_once __DIR__ . '/../helpers.php';
 
 class Application
 {
