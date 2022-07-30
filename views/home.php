@@ -9,7 +9,19 @@
 </head>
 
 <body>
-  <h1>Home</h1>
+  <nav>
+    <h1>Home</h1>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/login">Login</a></li>
+      <?php if (isset($_SESSION['user'])) { ?>
+        <li><a href="/dashboard">Dasboard</a></li>
+        <li><a href="/logout">Logout</a></li>
+      <?php } ?>
+
+
+    </ul>
+  </nav>
 
   <form action="/auth" method="post">
     <p>Nombre: <input type="text" name="nombre" size="40"></p>

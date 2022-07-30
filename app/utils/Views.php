@@ -13,16 +13,31 @@ class Views
 
     try {
       if (file_exists($file)) {
-        ob_start();
+        push($view == "home" ? "/" : "$view");
         require $file;
       } else {
         return Views::render("not-found");
       }
     } catch (\Throwable $th) {
-      ob_end_clean();
       return Views::render("error");
     }
+  }
 
-    echo ob_get_clean();
+  // function to include partial view
+  public static function include($view, $data = [])
+  {
+    $file = __DIR__ . '/../../views/partials/' . $view . '.php';
+
+    extract($data, EXTR_SKIP);
+
+    try {
+      if (file_exists($file)) {
+        require $file;
+      } else {
+        return "";
+      }
+    } catch (\Throwable $th) {
+      return "";
+    }
   }
 }
