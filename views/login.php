@@ -10,7 +10,13 @@
 
 <body>
     <div>
-        <?php var_dump($errors ?? 'nothing'); ?>
+        <?php
+        if (isset($errors)) {
+            foreach ($errors as $error) {
+                echo $error;
+            }
+        }
+        ?>
     </div>
     <main class="container">
         <div class="form-container">

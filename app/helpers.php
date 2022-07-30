@@ -15,3 +15,10 @@ function config($key)
         return null;
     }
 }
+
+function dump($message)
+{
+    echo "<pre>";
+    var_dump($message);
+    echo "</pre>";
+}

@@ -9,24 +9,36 @@ class AuthController
 {
     public function auth()
     {
-        $DB = new \app\utils\DataBase();
-        $request = Request::getBody();
+        try {
+            $DB = new \app\utils\DataBase();
+            $request = Request::getBody();
 
-        if (!filter_var($request->email, FILTER_VALIDATE_EMAIL))
-            return Views::render('login', ['errors' => [
-                'email' => 'Invalid Email',
-            ]]);
+            $query = $DB->query("SELECT * FROM users WHERE email = :email", [
+                'email' => $request->email
+            ]);
 
-        if (!(strlen($request->password) > 8))
-            return Views::render('login', ['errors' => [
-                'password' => 'Password must be at least 8 characters long'
-            ]]);
-
-        $query = $DB->query("SELECT * FROM users WHERE email = :email", [
-            'email' => $request->email
-        ]);
-
-        var_dump($query->fetchAll());
+            if ($query->rowCount() > 0) {
+                $user = $query->fetch();
+                if (password_verify($request->password, $user->password)) {
+                    $_SESSION['user'] = $user;
+                    header('Location: /');
+                } else {
+                    return Views::render('login', [
+                        'errors' => [
+                            'Password is incorrect'
+                        ]
+                    ]);
+                }
+            } else {
+                return Views::render('login', [
+                    'errors' => [
+                        'User not found'
+                    ]
+                ]);
+            }
+        } catch (\Throwable $th) {
+            dump($th);
+        }
     }
     public function logout($uriParams = null)
     {

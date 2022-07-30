@@ -9,7 +9,11 @@
 </head>
 
 <body>
-  <h1>An error has occurred</h1>
+  <?php if (isset($errors)) {
+    foreach ($errors as $error) {
+      echo $error;
+    }
+  } ?>
 </body>
 
 </html>

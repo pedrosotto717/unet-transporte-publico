@@ -123,6 +123,4 @@ CREATE TABLE IF NOT EXISTS `unet_transporte`.`users` (
 ENGINE = InnoDB;
 
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+INSERT INTO `unet_transporte`.`users` (`id`, `name`, `email`, `password`, `role`) VALUES (1, 'ADMIN', 'admin@alcaldia.com', '$2y$10$THbByQmMHbYTfjLIwOvFZ.lAXXI6szwBS9.NYoVNvXrTCsOceQcXO', 'ADMIN');
