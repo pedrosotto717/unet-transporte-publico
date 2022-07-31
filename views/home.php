@@ -14,7 +14,7 @@ use app\utils\Views; ?>
 
   <div class="container">
     <div class="form-container">
-      <h3>Haznos saber tus Sugerencias</h3>
+
       <?php Views::include("create-suggest"); ?>
     </div>
   </div>

@@ -89,10 +89,10 @@ ENGINE = InnoDB;
 -- Table `unet_transporte`.`places_on_the_route`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `unet_transporte`.`places_on_the_route` (
-  `id` VARCHAR(45) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `places_id` INT NOT NULL,
   `routes_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `places_id`, `routes_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_places_has_routes_routes1_idx` (`routes_id` ASC),
   INDEX `fk_places_has_routes_places1_idx` (`places_id` ASC),
   CONSTRAINT `fk_places_has_routes_places1`

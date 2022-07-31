@@ -22,7 +22,8 @@
         }
         ?>
     </div>
-    <main class="container">
+
+    <main class="container container--login">
         <div class="form-container">
             <h1 class="form-title">Login</h1>
             <form action="/auth" method="post">
@@ -34,7 +35,9 @@
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="password">
                 </div>
-                <input type="submit" class="form-btn btn">
+
+                <input type="submit" class="form-btn btn" value="Login">
+
             </form>
         </div>
     </main>
