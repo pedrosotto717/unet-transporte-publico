@@ -2,7 +2,7 @@
 
   <nav class="menu">
     <h3 class="user-name">
-      <?php if (isAuthenticated()) echo getSession('user.email'); ?>
+      <?php if (isset($_SESSION['user'])) echo getSession('user.email'); ?>
     </h3>
 
     <ul class="menu-list">

@@ -50,4 +50,10 @@ class DataBase
         $stmt->execute($params);
         return $stmt;
     }
+
+    //get last inserted id
+    public function lastInsertId()
+    {
+        return $this->connection->lastInsertId();
+    }
 }
