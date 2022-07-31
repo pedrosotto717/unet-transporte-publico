@@ -2,7 +2,9 @@
 
   <nav class="menu">
     <h3 class="user-name">
-      <?php if (isset($_SESSION['user'])) echo getSession('user.email'); ?>
+
+      <?php /*if (isset($_SESSION['user'])) echo getSession('user.email');*/ ?>
+
     </h3>
 
     <ul class="menu-list">
@@ -11,7 +13,7 @@
       </li>
       <?php if (isset($_SESSION['user'])) { ?>
         <li class="menu-item">
-          <a class="menu-link" href="/dashboard">Dasboard</a>
+          <a class="menu-link" href="/dashboard">Dashboard</a>
         </li>
         <li class="menu-item">
           <a class="menu-link" href="/logout">Logout</a>
