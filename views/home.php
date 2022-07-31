@@ -17,6 +17,9 @@ use app\utils\Views; ?>
 
       <?php Views::include("create-suggest"); ?>
     </div>
+    <div>
+      <?php Views::include("show-routes"); ?>
+    </div>
   </div>
 </body>
 
