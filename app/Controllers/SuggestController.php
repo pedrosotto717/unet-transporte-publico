@@ -38,15 +38,26 @@ class SuggestController
       $DB = new \app\utils\DataBase();
       $request = Request::getBody();
 
+      if (isset($request->business_id)) {
+        $query = $DB->query("INSERT INTO user_suggest (first_name, last_name, email, phone, comment) VALUES (:first_name, :last_name, :email, :phone, :comment)", [
+          'first_name' => $request->first_name,
+          'last_name' => $request->last_name,
+          'email' => $request->email,
+          'phone' => $request->phone,
+          'comment' => $request->comment,
+        ]);
+      } else {
+        $query = $DB->query("INSERT INTO user_suggest (first_name, last_name, email, phone, comment, business_id) VALUES (:first_name, :last_name, :email, :phone, :comment, :business_id)", [
+          'first_name' => $request->first_name,
+          'last_name' => $request->last_name,
+          'email' => $request->email,
+          'phone' => $request->phone,
+          'comment' => $request->comment,
+          'business_id' => isset($request->business_id) ? $request->business_id : null
+        ]);
+      }
+
       // insert into user table first_name, last_name, email, phone, comment, business_id
-      $query = $DB->query("INSERT INTO user_suggest (first_name, last_name, email, phone, comment, business_id) VALUES (:first_name, :last_name, :email, :phone, :comment, :business_id)", [
-        'first_name' => $request->first_name,
-        'last_name' => $request->last_name,
-        'email' => $request->email,
-        'phone' => $request->phone,
-        'comment' => $request->comment,
-        'business_id' => $request->business_id
-      ]);
 
       if ($query->rowCount() > 0) {
         return Views::render("home", [

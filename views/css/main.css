@@ -298,4 +298,40 @@ input[type="submit"] {
   border: solid 1px #DFDFDE;
   resize: vertical;
   max-height: 70px;
+
+}
+
+
+table.table {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 1rem;
+  width: calc(100% - 2rem);
+  background-color: #FFFFFF;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #0F3D3E;
+  border-style: solid;
+  color: #000000;
+}
+
+table.table td,
+table.table th {
+  font-family: Roboto;
+  font-weight: 400;
+  border-width: 2px;
+  border-color: #0F3D3E;
+  border-style: solid;
+  padding: .8rem .5rem;
+  color: #222;
+}
+
+table.table th {
+  color: #FFFFFF;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+table.table thead {
+  background-color: #0F3D3E;
 }
