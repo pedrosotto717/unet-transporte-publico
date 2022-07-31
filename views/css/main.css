@@ -254,6 +254,7 @@ input[type="submit"] {
 
 .dashboard {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .dashboard__card {
@@ -295,4 +296,6 @@ input[type="submit"] {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   border: solid 1px #DFDFDE;
+  resize: vertical;
+  max-height: 70px;
 }
