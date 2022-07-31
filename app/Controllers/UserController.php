@@ -46,7 +46,7 @@ class UserController
       $query = $DB->query("INSERT INTO users (name, email, password, role) VALUES (:name, :email, :password, :role)", [
         'name' => $request->name,
         'email' => $request->email,
-        'password' => $request->password,
+        'password' => password_hash($request->password, PASSWORD_DEFAULT),
         'role' => 'EMPLOYEE'
       ]);
 

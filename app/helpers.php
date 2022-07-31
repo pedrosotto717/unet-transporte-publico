@@ -86,3 +86,13 @@ function isAuthenticated()
         redirect("login");
     }
 }
+
+// validate is admin
+function isAdmin()
+{
+    if (getSession('user.role') == 'ADMIN') {
+        return true;
+    } else {
+        return false;
+    }
+}

@@ -38,7 +38,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `unet_transporte`.`routes` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
   `price` DECIMAL NOT NULL,
   `business_id` INT NOT NULL,
   `start` INT NOT NULL,
