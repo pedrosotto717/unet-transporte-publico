@@ -11,7 +11,17 @@ class RoutesController
   {
     try {
       $DB = new \app\utils\DataBase();
-      $query = $DB->query("SELECT * FROM routes");
+
+      $query = $DB->query("SELECT R.id, R.price, B.name as business, 
+              PS.street as start_street, PS.name as start_place_name,
+              PF.street as finish_street, PF.name as finish_place_name 
+              FROM routes R 
+              JOIN places PS 
+              join places PF
+              join business B 
+              ON R.start = PS.id
+              and R.finish = PF.id 
+              and B.id = R.business_id;");
 
       if ($query->rowCount() > 0) {
         $routes = $query->fetchAll();
@@ -70,6 +80,52 @@ class RoutesController
       }
     } catch (\Throwable $th) {
       dump($th);
+    }
+  }
+
+  public static function getRoutesByBusiness($id)
+  {
+    try {
+      $DB = new \app\utils\DataBase();
+      $query = $DB->query("SELECT * FROM routes");
+
+      // select routes by business_id
+      $query2 = $DB->query("SELECT * FROM routes WHERE business_id = :business_id", [
+        'business_id' => $id
+      ]);
+
+      if ($query->rowCount() > 0) {
+        $routes = $query->fetchAll();
+        return $routes;
+      } else {
+        return null;
+      }
+    } catch (\Throwable $th) {
+      dump($th);
+      return null;
+    }
+  }
+
+  public function getRoutesByPlaces()
+  {
+    try {
+      $DB = new \app\utils\DataBase();
+      $request = Request::getBody();
+
+      $query = $DB->query("SELECT * FROM routes R JOIN places P ON R.start = P.id WHERE start = :start AND finish = :finish JOIN ", [
+        'start' => $request->start,
+        'finish' => $request->finish
+      ]);
+
+      if ($query->rowCount() > 0) {
+        $routes = $query->fetchAll();
+        return $routes;
+      } else {
+        return null;
+      }
+    } catch (\Throwable $th) {
+      dump($th);
+      return null;
     }
   }
 }
