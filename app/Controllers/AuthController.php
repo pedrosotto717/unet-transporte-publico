@@ -18,14 +18,21 @@ class AuthController
             ]);
 
             if ($query->rowCount() > 0) {
-                $user = $query->fetch();
+                $user = (object) $query->fetch();
                 if (password_verify($request->password, $user->password)) {
-                    $_SESSION['user'] = $user;
-                    header('Location: /');
+                    unset($user->password);
+                    startSession();
+                    setSession("user", [
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'role' => $user->role
+                    ]);
+                    return Views::render("dashboard");
                 } else {
-                    return Views::render('login', [
-                        'errors' => [
-                            'Password is incorrect'
+                    return Views::render("login", [
+                        "errors" => [
+                            "Password incorrect"
                         ]
                     ]);
                 }
@@ -40,8 +47,11 @@ class AuthController
             dump($th);
         }
     }
+
     public function logout($uriParams = null)
     {
-        var_dump("Este es el Admin Controller");
+        endSession();
+        unset($_COOKIE['PHPSESSID']);
+        redirect("/");
     }
 }

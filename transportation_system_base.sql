@@ -16,7 +16,7 @@ USE `unet_transporte` ;
 -- Table `unet_transporte`.`business`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `unet_transporte`.`business` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -26,7 +26,7 @@ ENGINE = InnoDB;
 -- Table `unet_transporte`.`places`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `unet_transporte`.`places` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
@@ -37,8 +37,7 @@ ENGINE = InnoDB;
 -- Table `unet_transporte`.`routes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `unet_transporte`.`routes` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `price` DECIMAL NOT NULL,
   `business_id` INT NOT NULL,
   `start` INT NOT NULL,
@@ -69,7 +68,7 @@ ENGINE = InnoDB;
 -- Table `unet_transporte`.`user_suggest`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `unet_transporte`.`user_suggest` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `comment` VARCHAR(300) NOT NULL,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
@@ -113,7 +112,7 @@ ENGINE = InnoDB;
 -- Table `unet_transporte`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `unet_transporte`.`users` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
@@ -123,4 +122,4 @@ CREATE TABLE IF NOT EXISTS `unet_transporte`.`users` (
 ENGINE = InnoDB;
 
 
-INSERT INTO `unet_transporte`.`users` (`id`, `name`, `email`, `password`, `role`) VALUES (1, 'ADMIN', 'admin@alcaldia.com', '$2y$10$THbByQmMHbYTfjLIwOvFZ.lAXXI6szwBS9.NYoVNvXrTCsOceQcXO', 'ADMIN');
+INSERT INTO `unet_transporte`.`users` (`id`, `name`, `email`, `password`, `role`) VALUES (1, 'ADMIN', 'admin@alcaldia.com', '$2y$10$tubV6F3UYqCz1JyMmaRTW.j3q0bDLDZs.5WE7F1wYklhfR4xolvKu', 'ADMIN');
