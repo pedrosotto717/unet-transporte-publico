@@ -3,24 +3,17 @@
 $places = \app\controllers\PlaceController::index();
 $businesses = \app\controllers\BusinessController::index();
 $users = \app\controllers\UserController::index();
+
+
+
+use app\utils\Views;
+
+if (!isset($_SESSION['user'])) {
+  http_response_code(401);
+  redirect("login");
+}
 ?>
-<section>
-  <?php
 
-  use app\utils\Views;
-
-  if (!isset($_SESSION['user'])) {
-    http_response_code(401);
-    redirect("login");
-  }
-  ?>
-
-  <h1>Hello <?= getSession('user.name'); ?> </h1>
-  <p>
-    <?= getSession('user.email'); ?>
-  </p>
-  <a href="/logout">Logout</a>
-</section>
 
 <div>
   <h2>Personal de la Alcaldia</h2>

@@ -47,7 +47,7 @@ $places = \app\controllers\PlaceController::index();
 
   <div class="form-group">
     <label for="places_and_routes">* Lugares Intermedios</label>
-    <select class="chosen-select" id="places_and_routes" name="places_and_routes[]" multiple>
+    <select class="chosen-select places_and_routes" id="places_and_routes" name="places_and_routes[]" multiple>
       <option value="">Seleccione uno o varios lugares</option>
       <?php foreach ($places as $place) { ?>
         <option value="<?= $place['id'] ?>">
@@ -55,6 +55,7 @@ $places = \app\controllers\PlaceController::index();
       <?php } ?>
     </select>
   </div>
+
 
   <input type="submit" class="btn btn-primary">
 </form>
