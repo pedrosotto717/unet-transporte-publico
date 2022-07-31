@@ -43,5 +43,10 @@ $app->router->post("/places", [\app\controllers\PlaceController::class, "store"]
 //users Routes
 $app->router->post("/users", [\app\controllers\UserController::class, "store"]);
 
+// Routes Routes
+$app->router->post("/routes", [\app\controllers\RoutesController::class, "store"]);
+
+// Suggest Routes
+$app->router->post("/suggest", [\app\controllers\SuggestController::class, "store"]);
 
 $app->run();

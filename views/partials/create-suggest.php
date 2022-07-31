@@ -43,4 +43,6 @@ $businesses = \app\controllers\BusinessController::index();
     <textarea class="form-control" name="comment" placeholder="Comentario"></textarea>
   </div>
 
+  <input type="submit" class="btn btn-primary">
+
 </form>
