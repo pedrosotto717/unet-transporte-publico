@@ -11,7 +11,14 @@ class SuggestController
   {
     try {
       $DB = new \app\utils\DataBase();
-      $query = $DB->query("SELECT * FROM user_suggest");
+      $query = $DB->query("
+            SELECT us.comment, us.first_name, us.last_name, us.email, us.phone, us.business_id  as bussiness 
+            from user_suggest us  where business_id is null union
+            
+            (SELECT U.comment as comment, U.first_name as first_name, U.last_name as last_name, 
+            U.email as email, U.phone as phone, B.name as bussiness 
+            FROM user_suggest U JOIN business B ON U.business_id = B.id)
+        ");
 
       if ($query->rowCount() > 0) {
         $suggestions = $query->fetchAll();

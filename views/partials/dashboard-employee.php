@@ -6,14 +6,30 @@
   $suggestions = \app\controllers\SuggestController::index();
   ?>
 
-
-  <h1>Bienvenido <?= getSession('user.name'); ?> </h1>
-
   <!-- list suggestion -->
   <div>
-    <h2>Sugerencias de los usuarios</h2>
+      <table>
+          <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Email</th>
+              <th>Teléfono</th>
+              <th>Comentario</th>
+              <th>Email</th>
 
-    <ul>
+          </tr>
+          <tr>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+          </tr>
+          <tr>
+              <td>Centro comercial Moctezuma</td>
+              <td>Francisco Chang</td>
+              <td>Mexico</td>
+          </tr>
+      </table>
+      <ul>
       <?php
       if (isset($suggestions) && $suggestions != null) {
         foreach ($suggestions as $suggestion) { ?>
@@ -23,7 +39,7 @@
             <?= $suggestion['email']; ?>
             <?= $suggestion['phone']; ?>
             <?= $suggestion['comment']; ?>
-            <?= $suggestion['business_id']; ?>
+            <?= $suggestion['bussiness']; ?>
           </li>
       <?php }
       } else {
