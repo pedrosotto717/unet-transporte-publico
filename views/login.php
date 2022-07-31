@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <?php Views::include("header"); ?>
     <div>
         <?php
         if (isset($errors)) {
@@ -33,7 +34,7 @@
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="password">
                 </div>
-                <button type="submit" class="form-btn btn">Login</button>
+                <input type="submit" class="form-btn btn">
             </form>
         </div>
     </main>

@@ -15,10 +15,12 @@ $places = \app\controllers\PlaceController::index();
     <label for="business_id">* Empresas</label>
     <select class="form-control" id="business_id" name="business_id">
       <option value="">Seleccione una empresa</option>
-      <?php foreach ($businesses as $business) { ?>
-        <option value="<?= $business['id'] ?>">
-          <?= $business['name'] ?></option>
-      <?php } ?>
+      <?php foreach ($businesses as $business) {
+        if ($business['name'] != null) { ?>
+          <option value="<?= $business['id'] ?>">
+            <?= $business['name'] ?></option>
+      <?php }
+      } ?>
     </select>
   </div>
 
@@ -26,10 +28,13 @@ $places = \app\controllers\PlaceController::index();
     <label for="places_start_id">* Inicio de ruta</label>
     <select class="chosen-select" id="places_start_id" name="places_start_id">
       <option value="">Seleccione un lugar</option>
-      <?php foreach ($places as $place) { ?>
-        <option value="<?= $place['id'] ?>">
-          <?= $place['name'] ?></option>
-      <?php } ?>
+      <?php foreach ($places as $place) {
+        if ($place['street'] != null) { ?>
+          <option value="<?= $place['id'] ?>">
+            <?= $place['name'] . '   ' . $place['street'] ?>
+          </option>
+      <?php }
+      } ?>
     </select>
   </div>
 
@@ -37,10 +42,13 @@ $places = \app\controllers\PlaceController::index();
     <label for="places_finish_id">* Puno de fin</label>
     <select class="chosen-select" id="places_finish_id" name="places_finish_id">
       <option value="">Seleccione un lugar</option>
-      <?php foreach ($places as $place) { ?>
-        <option value="<?= $place['id'] ?>">
-          <?= $place['name'] ?></option>
-      <?php } ?>
+      <?php foreach ($places as $place) {
+        if ($place['street'] != null) { ?>
+          <option value="<?= $place['id'] ?>">
+            <?= $place['name'] . '   ' . $place['street'] ?>
+          </option>
+      <?php }
+      } ?>
     </select>
   </div>
 
@@ -49,10 +57,13 @@ $places = \app\controllers\PlaceController::index();
     <label for="places_and_routes">* Lugares Intermedios</label>
     <select class="chosen-select places_and_routes" id="places_and_routes" name="places_and_routes[]" multiple>
       <option value="">Seleccione uno o varios lugares</option>
-      <?php foreach ($places as $place) { ?>
-        <option value="<?= $place['id'] ?>">
-          <?= $place['name'] ?></option>
-      <?php } ?>
+      <?php foreach ($places as $place) {
+        if ($place['street'] != null) { ?>
+          <option value="<?= $place['id'] ?>">
+            <?= $place['name'] . '   ' . $place['street'] ?>
+          </option>
+      <?php }
+      } ?>
     </select>
   </div>
 
