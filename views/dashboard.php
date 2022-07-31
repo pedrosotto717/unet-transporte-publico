@@ -7,7 +7,7 @@ use app\utils\Views;
 
 <head>
   <?php Views::include("head", [
-    "title" => ""
+    "title" => "Dashboard"
   ]); ?>
 </head>
 
@@ -15,6 +15,8 @@ use app\utils\Views;
   <?php Views::include("header"); ?>
 
   <div class="container">
+    <h1 class="welcome">Hello <?= getSession('user.name'); ?> </h1>
+
     <?php
     if (isAuthenticated() && isAdmin())
       Views::include("dashboard-admin");
