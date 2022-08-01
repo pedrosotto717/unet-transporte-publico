@@ -128,24 +128,35 @@ class RoutesController
       if ($query->rowCount() > 0) {
         $routes = $query->fetchAll();
 
-          $route["places_on_the_route"] = [];
+        if (count($routes) > 0) {
+          $routes["places_on_the_route"] = [];
 
-        foreach ($routes as $route) {
-            $points = $DB->query("
+          foreach ($routes as $route) {
+            if (isset($route['route_id'])) {
+              $points = $DB->query(
+                "
                 select p.street, p.name, potr.places_id 
                 from places_on_the_route potr join places p on p.id = potr.places_id where potr.routes_id = :id
-            ", [ 'id' => $route['route_id'] ]);
+            ",
+                [
+                  'id' => $route['route_id']
+                ]
+              );
 
-            $points = $points->fetchAll();
+              $points = $points->fetchAll();
 
-            array_push($route["places_on_the_route"], $points);
-        }
+              $routes["places_on_the_route"][] = $points;
+            }
+          }
 
           return Views::render("home", [
-              "routes" => $routes
+            "routes" => $routes
           ]);
-      } else {
+        } else {
           return Views::render("home");
+        }
+      } else {
+        return Views::render("home");
       }
     } catch (\Throwable $th) {
       dump($th);

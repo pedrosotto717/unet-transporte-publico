@@ -11,7 +11,7 @@ $places = \app\controllers\PlaceController::index();
             if ($place['name'] != null) { ?>
                 <option value="<?= $place['id'] ?>">
                     <?= $place['name'] ?> <?= $place['street'] ?></option>
-            <?php }
+        <?php }
         } ?>
     </select>
 
@@ -19,7 +19,53 @@ $places = \app\controllers\PlaceController::index();
 </form>
 
 <?php
-if (count($routes) > 0) {
-//    dump($routes);
-}
+if (count($routes) > 0) :
+
+
+
+    dump($routes);
+
 ?>
+    <table class="table">
+        <!-- Table: id, name,  -->
+        <thead>
+            <tr>
+                <th>Precio</th>
+                <th>Empresa</th>
+                <th>Inicio</th>
+                <th>Final</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($routes as $route) :
+                if (isset($route['route_id'])) :
+            ?>
+                    <tr>
+                        <td><?= $route['price'] ?></td>
+                        <td><?= $route['business'] ?></td>
+
+                        <td>
+                            <?= $route['start_place_street'] ?>
+                            <br>
+                            <?= $route['start_place_name'] ?>
+                        </td>
+
+                        <td>
+                            <?= $route['finish_place_street'] ?>
+                            <br>
+                            <?= $route['finish_place_name'] ?>
+                        </td>
+
+                    </tr>
+            <?php
+                endif;
+            endforeach;
+            ?>
+        </tbody>
+    </table>
+
+<?php endif; ?>
+
+<br>
+<br>
+<br>
