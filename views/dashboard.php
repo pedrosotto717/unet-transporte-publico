@@ -15,7 +15,7 @@ use app\utils\Views;
   <?php Views::include("header"); ?>
 
   <div class="container container--dashboard">
-    <h1 class="dashboard__title">Hello <?= getSession('user.name'); ?> </h1>
+    <h1 class="dashboard__title">¡Hola <?= getSession('user.name'); ?>! </h1>
 
     <?php
     if (isAuthenticated() && isAdmin())

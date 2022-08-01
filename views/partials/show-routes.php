@@ -2,6 +2,10 @@
 $routes = \app\controllers\RoutesController::index();
 ?>
 
+<h3 class="home__title">¡Conoce las rutas de transporte urbano!</h3>
+<?php
+if (count($routes) > 0) {
+?>
 <table class="table">
   <!-- Table: id, name,  -->
   <thead>
@@ -34,3 +38,8 @@ $routes = \app\controllers\RoutesController::index();
     <?php } ?>
   </tbody>
 </table>
+
+<?php }
+else { ?>
+    <h3>No hay rutas registradas</h3>
+<?php } ?>

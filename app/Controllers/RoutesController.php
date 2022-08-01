@@ -27,7 +27,7 @@ class RoutesController
         $routes = $query->fetchAll();
         return $routes;
       } else {
-        return null;
+        return [];
       }
     } catch (\Throwable $th) {
       dump($th);

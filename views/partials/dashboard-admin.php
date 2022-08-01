@@ -33,10 +33,11 @@ if (!isset($_SESSION['user'])) {
     </div>
 
     <section class="dashboard__card">
-        <h2>Create Business</h2>
+        <h2>Crear Empresas</h2>
         <?php Views::include("create-business"); ?>
         <div>
-            <div>
+            <h3>Empresas existentes</h3>
+            <div class="card-items">
                 <?php if (isset($businesses) && $businesses != null) { ?>
                     <ul>
                         <?php foreach ($businesses as $business) { ?>
@@ -51,10 +52,11 @@ if (!isset($_SESSION['user'])) {
     </section>
 
     <section class="dashboard__card">
-        <h2>Create Place</h2>
+        <h2>Crear Lugar</h2>
         <?php Views::include("create-place"); ?>
+        <h3>Lugares existentes</h3>
 
-        <div>
+        <div class="card-items">
             <?php if (isset($places) && $places != null) { ?>
                 <ul>
                     <?php foreach ($places as $place) { ?>
@@ -69,7 +71,7 @@ if (!isset($_SESSION['user'])) {
     </section>
 
     <div class="form-container dashboard__card">
-        <h2>Create Routes</h2>
+        <h2>Crear Rutas</h2>
         <?php Views::include("create-routes"); ?>
     </div>
 
