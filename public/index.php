@@ -45,6 +45,7 @@ $app->router->post("/users", [\app\controllers\UserController::class, "store"]);
 
 // Routes Routes
 $app->router->post("/routes", [\app\controllers\RoutesController::class, "store"]);
+$app->router->post("/routes-search", [\app\controllers\RoutesController::class, "getRoutesByPlaces"]);
 
 
 // Suggest Routes

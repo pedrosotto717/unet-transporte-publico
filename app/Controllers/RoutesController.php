@@ -112,16 +112,40 @@ class RoutesController
       $DB = new \app\utils\DataBase();
       $request = Request::getBody();
 
-      $query = $DB->query("SELECT * FROM routes R JOIN places P ON R.start = P.id WHERE start = :start AND finish = :finish JOIN ", [
-        'start' => $request->start,
-        'finish' => $request->finish
+      $query = $DB->query("
+            select  r.id as route_id , price, b.name as business, p.name as start_place_name, p.street as start_place_street,
+            p2.name as finish_place_name, p2.street as finish_place_street
+            from routes r join business b on r.business_id = b.id 
+            join places p on r.`start` = p.id join places p2 on r.finish = p2.id 
+            where r.id in ((select routes_id from places_on_the_route potr where potr.places_id = :point)
+            union
+            (select r.id from routes r where r.`start` = :point)
+            union
+            (select r.id from routes r where r.finish = :point)) ", [
+        'point' => $request->point_id,
       ]);
 
       if ($query->rowCount() > 0) {
         $routes = $query->fetchAll();
-        return $routes;
+
+          $route["places_on_the_route"] = [];
+
+        foreach ($routes as $route) {
+            $points = $DB->query("
+                select p.street, p.name, potr.places_id 
+                from places_on_the_route potr join places p on p.id = potr.places_id where potr.routes_id = :id
+            ", [ 'id' => $route['route_id'] ]);
+
+            $points = $points->fetchAll();
+
+            array_push($route["places_on_the_route"], $points);
+        }
+
+          return Views::render("home", [
+              "routes" => $routes
+          ]);
       } else {
-        return null;
+          return Views::render("home");
       }
     } catch (\Throwable $th) {
       dump($th);

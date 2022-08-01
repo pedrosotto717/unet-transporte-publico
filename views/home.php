@@ -20,6 +20,12 @@ use app\utils\Views; ?>
     <div class="show-routes">
       <?php Views::include("show-routes"); ?>
     </div>
+
+      <div class="search-routes">
+          <?php Views::include("search-routes", [
+              'routes' => $routes ?? []
+          ]); ?>
+      </div>
   </div>
 </body>
 
