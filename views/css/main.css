@@ -348,7 +348,7 @@ table.table thead {
 }
 
 .show-routes {
-  padding-bottom: 8em
+  padding-bottom: 3em
 }
 
 .card-items {
@@ -358,4 +358,15 @@ table.table thead {
 .card-items ul li {
   border: 1px solid #DFDFDE;
   padding: .5em;
+}
+
+.home__form-search {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.home__form-body {
+  display: flex;
+  flex-direction: column;
 }

@@ -129,9 +129,8 @@ class RoutesController
         $routes = $query->fetchAll();
 
         if (count($routes) > 0) {
-          $routes["places_on_the_route"] = [];
 
-          foreach ($routes as $route) {
+          foreach ($routes as$key => $route) {
             if (isset($route['route_id'])) {
               $points = $DB->query(
                 "
@@ -145,7 +144,7 @@ class RoutesController
 
               $points = $points->fetchAll();
 
-              $routes["places_on_the_route"][] = $points;
+              $routes[$key]["places_on_the_route"] = $points;
             }
           }
 
